@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <script src=
+	<script src=
 "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
+	</script>
 	<title>Chat Room</title>
 	<style>
 		body {
@@ -72,7 +72,7 @@
 			const messageText = messageInputElement.value.trim();
 			
 			//Get user ip
-			const _ip = "ip: ";
+			let _ip = "ip: ";
 			$.getJSON("https://api.ipify.org?format=json", function(data) {
 				_ip = data.ip;
 			})
