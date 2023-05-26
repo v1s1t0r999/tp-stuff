@@ -72,7 +72,7 @@
 			const messageText = messageInputElement.value.trim();
 			
 			//Get user ip
-// 			 _ip = "ip: ";
+			var _ip = "ip: ";
 			$.getJSON("https://api.ipify.org?format=json", function(data) {
 				_ip = data.ip;
 			})
