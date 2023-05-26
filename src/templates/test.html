@@ -71,13 +71,13 @@
 			const messageText = messageInputElement.value.trim();
 			
 			//Get user ip
- 			//getUserIP()
+ 			ip = await getUIP()
 
 			// If message is not empty
 			if (messageText) {
 				// Create message element
 				const messageElement = document.createElement('p');
-				messageElement.innerHTML =   `<strong> ${ await getUIP() }:</strong> ${messageText}`;
+				messageElement.innerHTML =   `<strong> ${ip}:</strong> ${messageText}`;
 
 				// Add message to messages element
 				messagesElement.appendChild(messageElement);
@@ -89,8 +89,8 @@
 		
 		async function getUIP() {
 			let response = await fetch("https://api.ipify.org?format=json");
-			let data = await response.json()
-			ip = data.ip
+			let data = await response.json();
+			ip = data.ip;
 			return ip;
 		}
 
