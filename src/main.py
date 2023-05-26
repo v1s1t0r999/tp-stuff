@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
 	return "index"
 
+@app.errorhandler(404)
+def notfound(e):
+	return e
+
 def run(debug=False):
 	app.run("0.0.0.0", debug=debug)
 
