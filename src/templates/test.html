@@ -64,22 +64,24 @@
 		const messagesElement = document.querySelector('#messages');
 		const messageInputElement = document.querySelector('#message-input');
 		const sendButtonElement = document.querySelector('#send-button');
-        const _ip = "";
         
-        $.getJSON("https://api.ipify.org?format=json", function(data) {
-        _ip = data.ip;
-        })
 
 		// Send message function
 		const sendMessage = () => {
 			// Get message text
 			const messageText = messageInputElement.value.trim();
+			
+			//Get user ip
+			const _ip = "ip: ";
+			$.getJSON("https://api.ipify.org?format=json", function(data) {
+				_ip = data.ip;
+			})
 
 			// If message is not empty
 			if (messageText) {
 				// Create message element
 				const messageElement = document.createElement('p');
-				messageElement.innerHTML =   "<strong>"+ _ip +"</strong>"+ messageText;
+				messageElement.innerHTML =   `<strong> ${_ip}:</strong> ${messageText}`;
 
 				// Add message to messages element
 				messagesElement.appendChild(messageElement);
