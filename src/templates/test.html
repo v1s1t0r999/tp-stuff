@@ -54,7 +54,7 @@
 	<h1>Chat Room</h1>
 	<div id="messages">
 		<!-- Example message -->
-		<p><strong>User:</strong> Hello, anyone here?</p>
+		<p><strong>User:</strong> Hello, anyone here? 1</p>
 	</div>
 	<input type="text" id="message-input" placeholder="Type your message here...">
 	<button id="send-button">Send</button>
@@ -74,7 +74,7 @@
 			//Get user ip
 			var _ip = "ip: ";
 			$.getJSON("https://api.ipify.org?format=json", function(data) {
-				_ip = data.ip;
+				var _ip = data.ip;
 			})
 
 			// If message is not empty
