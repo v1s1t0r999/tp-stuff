@@ -64,20 +64,19 @@
 		const messagesElement = document.querySelector('#messages');
 		const messageInputElement = document.querySelector('#message-input');
 		const sendButtonElement = document.querySelector('#send-button');
+		
+		let main_ip = "IP: "
 
 		// Send message function
 		const sendMessage = () => {
 			// Get message text
 			const messageText = messageInputElement.value.trim();
-			
-			//Get user ip
- 			ip = await getUIP()
 
 			// If message is not empty
 			if (messageText) {
 				// Create message element
 				const messageElement = document.createElement('p');
-				messageElement.innerHTML =   `<strong> ${ip}:</strong> ${messageText}`;
+				messageElement.innerHTML =   `<strong> ${main_ip}:</strong> ${messageText}`;
 
 				// Add message to messages element
 				messagesElement.appendChild(messageElement);
@@ -92,6 +91,10 @@
 			let data = await response.json();
 			ip = data.ip;
 			return ip;
+		}
+		
+		async function setip() {
+			main_ip = await getUIP();
 		}
 
 		// Add event listeners
