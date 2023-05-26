@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+	<title>Chat Room</title>
+	<style>
+		body {
+			background-color: #efefef;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			padding: 20px;
+		}
+		h1 {
+			font-size: 24px;
+			font-weight: bold;
+			margin: 0 0 20px;
+		}
+		#messages {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			min-height: 200px;
+			overflow: auto;
+			padding: 10px;
+			margin-bottom: 20px;
+		}
+		#message-input {
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			padding: 10px;
+			margin-bottom: 20px;
+			width: 100%;
+		}
+		#send-button {
+			background-color: #007bff;
+			border: none;
+			border-radius: 4px;
+			color: #fff;
+			cursor: pointer;
+			padding: 10px 20px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		#send-button:hover {
+			background-color: #0069d9;
+		}
+	</style>
+</head>
+<body>
+	<h1>Chat Room</h1>
+	<div id="messages">
+		<!-- Example message -->
+		<p><strong>User:</strong> Hello, anyone here?</p>
+	</div>
+	<input type="text" id="message-input" placeholder="Type your message here...">
+	<button id="send-button">Send</button>
+
+	<script>
+		// Get DOM elements
+		const messagesElement = document.querySelector('#messages');
+		const messageInputElement = document.querySelector('#message-input');
+		const sendButtonElement = document.querySelector('#send-button');
+        const _ip = "";
+        
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+        _ip = data.ip;
+        })
+
+		// Send message function
+		const sendMessage = () => {
+			// Get message text
+			const messageText = messageInputElement.value.trim();
+
+			// If message is not empty
+			if (messageText) {
+				// Create message element
+				const messageElement = document.createElement('p');
+				messageElement.innerHTML =   "<strong>"+ _ip +"</strong>"+ messageText;
+
+				// Add message to messages element
+				messagesElement.appendChild(messageElement);
+
+				// Clear message input
+				messageInputElement.value = '';
+			}
+		};
+
+		// Add event listeners
+		sendButtonElement.addEventListener('click', sendMessage);
+		messageInputElement.addEventListener('keypress', (event) => {
+			if (event.key === 'Enter') {
+				sendMessage();
+			}
+		});
+	</script>
+</body>
+</html>
