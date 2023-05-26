@@ -87,11 +87,16 @@
 			}
 		};
 		
+		async function getJson(url) {
+			let response = await fetch(url);
+			let data = await response.json()
+			ip = data.ip
+			return ip;
+		}
+		
 		function getUserIP() {
-			$.getJSON("https://api.ipify.org?format=json", function(data) {
-				const _data = data;
-			});
-			_ip = _data.ip;
+			getJSON("https://api.ipify.org?format=json").then(ip => console.log(ip));
+			_ip = ip;
 		}
 
 		// Add event listeners
