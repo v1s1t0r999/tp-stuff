@@ -43,9 +43,9 @@ def add(roomname,data=None): # str roomname or with data
 def get_avatar(_ip):
 	con = requests.get(url, headers=headers).json()
 	try:
-		return con['ip_avatars'][_ip]
+		return con['record']['ip_avatars'][_ip]
 	except KeyError:
-		con['ip_avatars'][_ip] = requests.get("https://loremflickr.com/json/g/320/320/creepy").json()['file']
+		con['record']['ip_avatars'][_ip] = requests.get("https://loremflickr.com/json/g/320/320/creepy").json()['file']
 		new = requests.put(url, json=con, headers=headers)
 		return new.json()['record']['ip_avatars'][_ip] # returns new complete json
 
