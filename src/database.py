@@ -1,7 +1,7 @@
 import os
 import requests
 
-_id = os.getenv('pasteid') # your pasteid
+_id = eval(os.getenv('pasteid')) # your pasteid
 bin_key = os.getenv("pastekey")
 url = f'https://api.jsonbin.io/v3/b/{_id[0]}'
 avatar_url = f'https://api.jsonbin.io/v3/b/{_id[1]}'
