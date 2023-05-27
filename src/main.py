@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-	return "index"
+	return "<a href='/room'>Join or Create a Room</a>"
 
 
 @app.errorhandler(404)
@@ -25,20 +25,27 @@ def notfound(e):
 @app.route("/room/<name>", methods=["GET","POST"])
 def room(name):
 	if request.method=="POST":
-		print("POST TRIGGERED")
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		content = request.form['content']
 		if content=="":
-			print("|||||| no content |||")
 			return redirect(f"/room/{name}")
 		database.add(name,{'from':user,'content':content,'timestamp':timestamp})
-		print("hereeeeeeeeeee")
 		return redirect(f"/room/{name}")
-	print("GET TRIGGERED")
 	name=str(name)
 	messages = database.read(name) #list like: [{"from":"user","msg":"this this"},{"from":"another","msg":"ok ok"}]
-	return render_template("chatarea.html",messages=messages,roomname=name)
+	return render_template("chatarea.html",messages=messages,roomname=name,_ip=request.remote_addr)
+
+
+
+@app.route("/room", methods=["GET","POST"])
+def room_base():
+	if request.method=="POST":
+		roomname = request.form['roomname']
+		return redirect(f"/room/{roomname}")
+	return render_template("room.html",_ip=request.remote_addr)
+
+
 
 
 

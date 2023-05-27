@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<br><br><br>
+
+<h3>Join or Create a room</h3>
+
+<p>Just type in the room name you want to join. If it exists, you'll enter the chat, and if it doesn't, a new room will be created!!</p>
+<p>Remember, your username will be your <b>IPV4 Address ({{ _ip }})</b> only! This is to prevent <a href="https://www.techtarget.com/whatis/definition/catfish">Catfishing</a>.</p>
+<p>Yea okay thats it :)</p>
+<br><br><hr><br><br>
+<form method="POST">
+    <input type="text" name="roomname" placeholder="Room name...">
+    <button>Send</button>
+</form>
+
+
+{% endblock %}
+

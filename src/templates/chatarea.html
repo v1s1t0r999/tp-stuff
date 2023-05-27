@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Yes Here...{% endblock %}
+{% block title %}{{ _ip }} @ {{ roomname }}{% endblock %}
 
 {% block body %}
-
+<h1>{{ roomname }}</h1>
+<br><hr><br>
 <div class="container">
     {% for message in messages %}
     <div class="message">
