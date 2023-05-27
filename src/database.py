@@ -30,7 +30,7 @@ def add(roomname,data=None): # str roomname or with data
 	#roomname is a dict || {roomname:{["from":"user","content":"this this"]}}
 	con[roomname].append(data) # Full room data is formatted with new+old content!
 	new = requests.put(url, json={'full_data':con}, headers=headers)
-h	return new.json()['record']['full_data'] # returns new complete json
+	return new.json()['record']['full_data'] # returns new complete json
 
 
 # def delete(roomname):
