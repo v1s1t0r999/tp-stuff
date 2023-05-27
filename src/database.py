@@ -2,10 +2,12 @@ import os
 import requests
 
 _id = os.getenv('pasteid') # your pasteid
-url = f'https://api.jsonbin.io/v3/b/{_id}'
+bin_key = os.getenv("pastekey")
+url = f'https://api.jsonbin.io/v3/b/{_id[0]}'
+avatar_url = f'https://api.jsonbin.io/v3/b/{_id[1]}'
 headers = {
 	'Content-Type': 'application/json',
-	'X-Master-Key': os.getenv("pastekey") # https://jsonbin.io/app/app/api-keys
+	'X-Master-Key': bin_key # https://jsonbin.io/app/app/api-keys
 }
 
 
@@ -41,13 +43,13 @@ def add(roomname,data=None): # str roomname or with data
 
 
 def get_avatar(_ip):
-	con = requests.get(url, headers=headers).json()
+	con = requests.get(avatar_url, headers=headers).json()
 	try:
 		return con['record']['ip_avatars'][_ip]
 	except KeyError:
-		con['record']['ip_avatars'][_ip] = requests.get("https://loremflickr.com/json/g/320/320/creepy").json()['file']
-		new = requests.put(url, json=con, headers=headers)
-		return new.json()['record']['ip_avatars'][_ip] # returns new complete json
+		con['record']['ip_avatars'].update({_ip : requests.get("https://loremflickr.com/json/g/320/320/creepy").json()['file']})
+		new = requests.put(avatar_url, json=con, headers=headers)
+		return new.json()['record']['ip_avatars'][_ssip] # returns new complete json
 
 
 
