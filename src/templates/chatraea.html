@@ -1,0 +1,11 @@
+<body style="background-color: #252525;color: #f3ff88;">
+
+{% for message in messages %}
+    <div id="msgarea1" class="container">
+        <p style="font-family:georgia,garamond,serif;font-size:16px;"><strong> {{ message.from }}</strong></p>
+        <p> {{ message.content }} </p>
+    </div>
+<br>
+<hr>
+{%endfor%}
+</body>

@@ -9,19 +9,32 @@ headers = {
 }
 
 
-def read():
+def read(roomname:str=None):
 	con = requests.get(url, headers=headers)
-	return con.json()['record']['messages'] # list of all the messages
+	if roomname:
+		try:
+			return con.json()['record']['full_data'][roomname] # messages list of the "roomname"
+		except KeyError: 
+			add(roomname)
+			newcon = requests.get(url, headers=headers)
+			return newcon.json()['record']['full_data'][roomname]
+	return con.json()['record']['full_data'] # json dict of all the messages
 
 
-def add(data):
-	con = read()
-	con.append(data)
-	new = requests.put(url, json={'messages':con}, headers=headers)
-	return new.json()['record'] # appends message data to the list
+def add(roomname): # str roomname or with data
+	con = read() # json dict of all the rooms
+	if isinstance(roomname,str):
+		con.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\""}]})
+		new = requests.put(url, json={'full_data':con}, headers=headers)
+		return new.json()['record']['full_data'] # returns new complete json
+	#roomname is a dict || {roomname:{["from":"user","content":"this this"]}}
+	con.update(data) # Full room data is formatted with new+old content!
+	new = requests.put(url, json={'full_data':con}, headers=headers)
+	return new.json()['record']['full_data'] # returns new complete json
 
 
-def delete():
-	req = requests.put(url, json={'messages':[]}, headers=headers)
-	return req.json()['record'] # the list become empty
+# def delete(roomname):
+# 	if roomname:
+# 		req = requests.put(url, json={'full_data':{}}, headers=headers)
+# 	return req.json()['record'] # the full_data becomes empty, ie, without anyroom data
  
