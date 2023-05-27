@@ -25,13 +25,17 @@ def notfound(e):
 @app.route("/room/<name>", methods=["GET","POST"])
 def room(name):
 	if request.method=="POST":
+		print("POST TRIGGERED")
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		content = request.form['message']
 		if content=="":
+			print("|||||| no content |||")
 			return redirect(f"/room/{name}")
 		database.add(name,{'from':user,'content':content,'timestamp':timestamp})
+		print("hereeeeeeeeeee")
 		return redirect(f"/room/{name}")
+	print("GET TRIGGERED")
 	name=str(name)
 	messages = database.read(name) #list like: [{"from":"user","msg":"this this"},{"from":"another","msg":"ok ok"}]
 	return render_template("chatarea.html",messages=messages,roomname=name)

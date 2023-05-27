@@ -23,13 +23,17 @@ def read(roomname:str=None):
 
 def add(roomname,data=None): # str roomname or with data
 	con = read() # json dict of all the rooms
+	print("____________________")
 	if not data:
 		con.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00"}]})
 		new = requests.put(url, json={'full_data':con}, headers=headers)
+		print("++++++++++++++++++++++")
 		return new.json()['record']['full_data'] # returns new complete json
 	#roomname is a dict || {roomname:{["from":"user","content":"this this"]}}
 	con[roomname].append(data) # Full room data is formatted with new+old content!
+	print("==============================")
 	new = requests.put(url, json={'full_data':con}, headers=headers)
+	print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 	return new.json()['record']['full_data'] # returns new complete json
 
 
