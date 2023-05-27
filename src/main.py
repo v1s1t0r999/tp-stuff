@@ -29,10 +29,9 @@ def room(name):
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		content = request.form['content']
-		avatar_url = r.get("https://dog.ceo/api/breeds/image/random").json()['message']
 		if content=="":
 			return redirect(f"/room/{name}")
-		database.add(name,{'from':user,'content':content,'timestamp':timestamp,'avatar':avatar_url})
+		database.add(name,{'from':user,'content':content,'timestamp':timestamp,'avatar':database.get_avatar(user)})
 		return redirect(f"/room/{name}")
 	name=str(name)
 	messages = database.read(name) #list like: [{"from":"user","msg":"this this"},{"from":"another","msg":"ok ok"}]
