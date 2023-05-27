@@ -28,7 +28,7 @@ def room(name):
 		print("POST TRIGGERED")
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
-		content = request.form['contents']
+		content = request.form['content']
 		if content=="":
 			print("|||||| no content |||")
 			return redirect(f"/room/{name}")
