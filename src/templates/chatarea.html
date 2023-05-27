@@ -5,20 +5,24 @@
 {% block body %}
 <h1>{{ roomname }}</h1>
 <br><hr><br>
-<div class="container">
-    {% for message in messages %}
+
+
+  {% for message in messages %}
+  <li>
+    <img src="{{ message.avatar }}" alt="Avatar" class="avatar">
     <div class="message">
-        <span class="sender">{{ message.from }}</span>
-        <span class="time">{{ message.timestamp }}</span>
-        <p>{{ message.content }}</p>
+      <h3>{{ message.from }}</h3>
+      <p>{{ message.content }}</p>
+      <span class="time">{{ message.timestamp }}</span>
     </div>
-    {% endfor %}
+  </li>
+{% endfor %}
     
-    <form class="form" method="POST">
+    <form class="chat-form" method="POST">
         <input type="text" name="content" id="msg-box" placeholder="Text here..." autofocus>
-        <button>Send</button>
+        <button type="submit">Send</button>
     </form>
-</div>
+
 
 <script>
     window.onload = function(){
