@@ -1,5 +1,9 @@
 <body style="background-color: #252525;color: #f3ff88;">
-
+<script>
+window.onload = function(){
+    window.scrollTo(0, Number.POSITIVE_INFINITY);
+}
+</script>
 {% for message in messages %}
     <div id="msgarea1" class="container">
         <p style="font-family:georgia,garamond,serif;font-size:16px;"><strong> {{ message.from }}</strong></p>
