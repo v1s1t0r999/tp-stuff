@@ -1,9 +1,11 @@
 from . import database
-from flask import Flask, request, render_template
+from datetime import datetime
+from flask import Flask, request, render_template, redirect
 
 
 
 app = Flask(__name__)
+
 
 
 @app.route("/")
@@ -20,11 +22,18 @@ def notfound(e):
 
 
 
-@app.route("/room/<name>")
+@app.route("/room/<name>", methods=["GET","POST"])
 def room(name):
+	if request.method=="POST":
+		user = request.remote_addr or "LOCALHOST ?!"
+		timestamp = datetime.now().strftime("%H:%M:%S")
+		content = request.form['message']
+		if content!="":
+			database.add(name,{'from':user,'content':content,'timestamp':timestamp})
+		return redirect(request.path)
 	name=str(name)
 	messages = database.read(name) #list like: [{"from":"user","msg":"this this"},{"from":"another","msg":"ok ok"}]
-	return render_template("chatarea.html",messages=messages)
+	return render_template("chatarea.html",messages=messages,roomname=name)
 
 
 

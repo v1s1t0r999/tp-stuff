@@ -1,0 +1,58 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .message {
+    border-bottom: 1px solid #505050;
+    padding: 10px;
+  }
+
+  .message:last-child {
+    border-bottom: none;
+  }
+
+  .message .sender {
+    font-weight: bold;
+  }
+
+  .message .time {
+    color: #999999;
+  }
+
+  .form {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+
+  .form button {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .form button:hover {
+    background-color: #3e8e41;
+  }

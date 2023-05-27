@@ -1,15 +1,28 @@
-<body style="background-color: #252525;color: #f3ff88;">
-<script>
-window.onload = function(){
-    window.scrollTo(0, Number.POSITIVE_INFINITY);
-}
-</script>
-{% for message in messages %}
-    <div id="msgarea1" class="container">
-        <p style="font-family:georgia,garamond,serif;font-size:16px;"><strong> {{ message.from }}</strong></p>
-        <p> {{ message.content }} </p>
+{% extends 'base.html' %}
+
+{% block title %}Yes Here...{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {% for message in messages %}
+    <div class="message">
+        <span class="sender">message.from</span>
+        <span class="time">message.timestamp</span>
+        <p>message.content</p>
     </div>
-<br>
-<hr>
-{%endfor%}
-</body>
+    {%endfor%}
+    
+    <form class="form" method="POST">
+        <input type="text" name="content" placeholder="Text here...">
+        <button>Send</button>
+    </form>
+</div>
+
+<script>
+    window.onload = function(){
+        window.scrollTo(0, Number.POSITIVE_INFINITY);
+    }
+</script>
+
+{% endblock %}

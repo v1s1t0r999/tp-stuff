@@ -21,16 +21,16 @@ def read(roomname:str=None):
 	return con.json()['record']['full_data'] # json dict of all the messages
 
 
-def add(roomname): # str roomname or with data
+def add(roomname,data=None): # str roomname or with data
 	con = read() # json dict of all the rooms
-	if isinstance(roomname,str):
-		con.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\""}]})
+	if not data:
+		con.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00"}]})
 		new = requests.put(url, json={'full_data':con}, headers=headers)
 		return new.json()['record']['full_data'] # returns new complete json
 	#roomname is a dict || {roomname:{["from":"user","content":"this this"]}}
-	con.update(data) # Full room data is formatted with new+old content!
+	con[roomname].append(data) # Full room data is formatted with new+old content!
 	new = requests.put(url, json={'full_data':con}, headers=headers)
-	return new.json()['record']['full_data'] # returns new complete json
+h	return new.json()['record']['full_data'] # returns new complete json
 
 
 # def delete(roomname):
