@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-	return "<a href='/room'>Join or Create a Room</a>"
+	return redirect("/room")
 
 
 @app.errorhandler(404)

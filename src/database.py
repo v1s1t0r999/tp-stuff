@@ -24,7 +24,7 @@ def read(roomname:str=None):
 def add(roomname,data=None): # str roomname or with data
 	con = read() # json dict of all the rooms
 	if not data:
-		con.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00"}]})
+		con.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00","avatar":"https://tp-stuff.vercel.app/static/ecstasy.png"}]})
 		new = requests.put(url, json={'full_data':con}, headers=headers)
 		return new.json()['record']['full_data'] # returns new complete json
 	#roomname is a dict || {roomname:{["from":"user","content":"this this"]}}
