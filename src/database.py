@@ -49,7 +49,7 @@ def get_avatar(_ip):
 		return con['record']['ip_avatars'][_ip]
 	except KeyError:
 		con['record']['ip_avatars'].update({_ip : requests.get("https://loremflickr.com/json/g/320/320/creepy").json()['file']})
-		new = requests.put(avatar_url, json=con, headers=headers)
+		new = requests.put(avatar_url, json=con['record'], headers=headers)
 		return new.json()['record']['ip_avatars'][_ip] # returns new complete json
 
 
