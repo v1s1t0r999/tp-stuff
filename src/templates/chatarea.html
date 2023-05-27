@@ -6,7 +6,7 @@
 <h1>{{ roomname }}</h1>
 <br><hr><br>
 
-
+<ul class="chat-list">
   {% for message in messages %}
   <li>
     <img src="{{ message.avatar }}" alt="Avatar" class="avatar">
@@ -16,12 +16,13 @@
       <span class="time">{{ message.timestamp }}</span>
     </div>
   </li>
-{% endfor %}
-    
-    <form class="chat-form" method="POST">
-        <input type="text" name="content" id="msg-box" placeholder="Text here..." autofocus>
-        <button type="submit">Send</button>
-    </form>
+  {% endfor %}
+</ul>
+
+<form class="chat-form" method="POST">
+    <input type="text" name="content" id="msg-box" placeholder="Text here..." autofocus>
+    <button type="submit">Send</button>
+</form>
 
 
 <script>
