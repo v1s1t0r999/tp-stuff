@@ -68,3 +68,9 @@ body {
 }
 
 
+.rooms a {
+  color:#00ff00;
+}
+ a:hover {
+  color:aqua;
+ }
