@@ -24,7 +24,7 @@
         <input type="text" class="live-search-box" placeholder="search for rooms here..." />
         <br>
             <p>
-                <ul class="live-search-list" type="None">
+                <ul id="rm-list" class="live-search-list" type="None">
                     {% for room in active_rooms %}
                     <li><a href="/room/{{ room }}"># {{ room }}</a></li>
                     {% endfor %}
@@ -51,6 +51,7 @@ var searchTerm = $(this).val().toLowerCase();
         } else {
             $(this).hide();
         }
+        $('rm-list').hide();
   
     });
   
