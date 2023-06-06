@@ -21,9 +21,9 @@
 
     <div class="rooms chat-form">
         <h2>All active rooms:</h2>
-        <input type="text" style="min-width: 20vw;" class="live-search-box" placeholder="search for rooms here..." />
+        <input type="text" class="live-search-box" placeholder="search for rooms here..." /><br>
             <p>
-                <ul class="live-search-list" type="None">
+                <ul class="live-search-list" type="None" style="display: none;">
                     {% for room in active_rooms %}
                     <li><a href="/room/{{ room }}"># {{ room }}</a></li>
                     {% endfor %}
