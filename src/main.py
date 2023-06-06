@@ -44,7 +44,7 @@ def room_base():
 	if request.method=="POST":
 		roomname = request.form['roomname']
 		return redirect(f"/room/{roomname}")
-	return render_template("room.html", _ip=request.remote_addr)
+	return render_template("room.html", _ip=request.remote_addr, active_rooms=list(database.read()))
 
 
 

@@ -3,21 +3,29 @@
 {% block body %}
 <br>
 <div class="container" style="padding-bottom: 10px;">
-    <h1>Join or Create a room</h1>
-    <div style="max-width: 45vw; margin-left: 0;padding-left: 5px;">
+    <h1>
+        Join or Create a Room
+        <div class="chat-form">
+            <form method="POST">
+                <input type="text" name="roomname" id=roombox placeholder="Room name...">
+                <button>--></button>
+            </form>
+        </div>
+    </h1>
+    <div>
         <br>
         <p>Just type in the room name you want to join. If it exists, you'll enter the chat, and if it doesn't, a new room will be created!!</p>
         <p>Remember, your username will be your <span style="color:#f1ff6e"><b>IPV4 Address</b> ({{ _ip }})</span> only! This is to prevent <a style="color:#00ffff" href="https://www.techtarget.com/whatis/definition/catfish">Catfishing</a>.</p>
         <p>Yea okay thats it :)</p>
     </div>
 
-    <div style="display: flex; max-width: 50vw; margin-left: 50vw;">
+    <div>
         <h2>All active rooms:</h2><br>
             <p>
                 <ul>
-                    <li>#helo</li>
-                    <li>#popo</li>
-                    <li>#kede</li>
+                    {% for room in active_rooms %}
+                    <li><a href="/room/{{ room }}"># {{ room }}</a></li>
+                    {% endblock %}
                 </ul>
             </p>
     </div>
