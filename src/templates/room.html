@@ -19,10 +19,13 @@
         <p>Yea okay thats it :)</p>
     </div>
 
-    <div class="chat-form rooms">
+    <div class="chat-form">
         <h2>All active rooms:</h2>
         <input type="text" class="live-search-box" placeholder="search for rooms here..." />
-        <br>
+        
+    </div>
+    <br>
+    <div class="rooms">
             <p>
                 <ul id="rm-list" class="live-search-list" type="None">
                     {% for room in active_rooms %}
