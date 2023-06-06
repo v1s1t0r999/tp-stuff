@@ -8,7 +8,7 @@
         <div class="chat-form">
             <form method="POST">
                 <input type="text" name="roomname" id=roombox placeholder="Room name...">
-                <button>--></button>
+                <button>-></button>
             </form>
         </div>
     </h1>
@@ -19,8 +19,9 @@
         <p>Yea okay thats it :)</p>
     </div>
 
-    <div class="rooms">
-        <h2>All active rooms:</h2><br>
+    <div class="rooms chat-form">
+        <h2>All active rooms:</h2>
+        <input type="text" style="min-width: 20vw;" class="live-search-box" placeholder="search for rooms here..." />
             <p>
                 <ul class="live-search-list" type="None">
                     {% for room in active_rooms %}
@@ -30,8 +31,6 @@
             </p>
     </div>
 </div>
-
-<input type="text" class="live-search-box" placeholder="search for rooms here..." />
 
 <script type="text/javascript">
     jQuery(document).ready(function($){
