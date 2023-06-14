@@ -34,10 +34,10 @@ def room(name):
 			if len(av_url)==1:
 				return redirect(f"/room/{name}")
 			try:
-				img = requests.get(av_url[1])
-				db.set_avatar(request.remote_addr,img)
+				img = r.get(av_url[1])
+				db.set_avatar(request.remote_addr,av_url[1])
 				return  redirect(f"/room/{name}")
-			except requests.exceptions.ConnectionError:
+			except r.exceptions.ConnectionError:
 				return redirect(f"/room/{name}")
 		if content=="":
 			return redirect(f"/room/{name}")
