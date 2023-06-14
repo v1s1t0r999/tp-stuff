@@ -35,7 +35,7 @@ def room(name):
 				return redirect(f"/room/{name}")
 			try:
 				img = r.get(av_url[1])
-				db.set_avatar(request.remote_addr,av_url[1])
+				database.set_avatar(request.remote_addr,av_url[1])
 				return  redirect(f"/room/{name}")
 			except r.exceptions.ConnectionError:
 				return redirect(f"/room/{name}")
