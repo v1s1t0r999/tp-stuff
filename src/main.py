@@ -29,7 +29,7 @@ def room(name):
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		content = request.form['content']
-		if content.lower() in ["!!avatar","!!av"]:
+		if content.lower().startswith("!!av"):
 			av_url = content.lower().split(" ")
 			if len(av_url)==1:
 				return redirect(f"/room/{name}")
