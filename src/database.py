@@ -1,6 +1,6 @@
 import os
 import requests
-from flask import jsonify
+# from flask import jsonify
 import ShitDB
 
 WOTD = "life"
@@ -24,11 +24,11 @@ def add(roomname, data=None):
     rooms = read()
     if not data:
         con = {roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00","avatar":"https://tp-stuff.vercel.app/static/ecstasy.png"}]}
-        db.push_remote_data(jsonify(con),"rooms.json")
+        db.push_remote_data(con,"rooms.json")
         return db.load_remote_data("rooms.json", eval_output=True)[roomname]
     
     rooms[roomname].append(data)
-    db.push_remote_data(jsonify(rooms), "rooms.json")
+    db.push_remote_data(rooms, "rooms.json")
     return db.load_remote_data("rooms.json", eval_output=True)[roomname]
 
 
@@ -38,10 +38,10 @@ def get_avatar(_ip):
 		return con['ip_avatars'][_ip]
 	except KeyError:
 		con['ip_avatars'].update({_ip : requests.get(f"https://loremflickr.com/json/320/320/{WOTD}").json()['file']})
-		db.push_remote_data(jsonify(con), "avatars.json")
+		db.push_remote_data(con, "avatars.json")
 		return con['ip_avatars'][_ip] # returns new complete json
 
 
-    
+
 
 
