@@ -21,7 +21,7 @@
 
 <form class="chat-form" method="POST">
     <input type="text" name="content" id="msg-box" placeholder="Text here..." autofocus>
-    <button type="submit">Send</button>
+    <button id="submit-btn" type="submit">Send</button>
 </form>
 
 
@@ -30,6 +30,10 @@
         window.scrollTo(0, 99999999999999999999999999);
         var input = document.getElementById("msg-box").focus()
     }
+
+    $("#submit.btn").click(function(){
+      $.blockUI({'message':'<img src="//pcoelho.outsystemscloud.com/FullScreenAjaxWait/img/ajaxloader.gif">'})
+    })
 </script>
 
 {% endblock %}
