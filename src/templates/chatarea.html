@@ -3,10 +3,48 @@
 {% block title %}{{ _ip }} @ {{ roomname }}{% endblock %}
 
 {% block body %}
-<div style="margin-top: 0; margin-left: 0; width: 100vw; position: fixed; z-index: 9999; background-color: rgb(20, 1, 124);">
-<h1>{{ roomname }}</h1>
+
+
+<style>
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #180845;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #99ff00;
+  font-weight: bold;
+}
+</style>
+  <header>
+    <h1>{{ roomname }}</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </nav>
+  </header>
 <br><hr><br>
-</div>
+
 
 <ul class="chat-list">
   {% for message in messages %}
