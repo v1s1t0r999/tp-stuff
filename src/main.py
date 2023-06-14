@@ -29,6 +29,16 @@ def room(name):
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		content = request.form['content']
+		if content.lower() in ["!!avatar","!!av"]:
+			av_url = content.lower().split(" ")
+			if len(av_url)==1:
+				return redirect(f"/room/{name}")
+			try:
+				img = requests.get(av_url[1])
+				db.set_avatar(request.remote_addr,img)
+				return  redirect(f"/room/{name}")
+			except requests.exceptions.ConnectionError:
+				return redirect(f"/room/{name}")
 		if content=="":
 			return redirect(f"/room/{name}")
 		database.add(name,{'from':user,'content':content,'timestamp':timestamp,'avatar':database.get_avatar(user)})

@@ -42,6 +42,12 @@ def get_avatar(_ip):
 		return con['ip_avatars'][_ip] # returns new complete json
 
 
+def set_avatar(_ip,av):
+    con = db.load_remote_data("avatars.json", eval_output=True)
+    con['ip_avatars'].update({_ip : av})
+    db.push_remote_data(con, "avatars.json")
+    return {_ip : av}
+
 
 
 
