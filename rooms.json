@@ -1,1 +1,1 @@
-{'test': [{'from': 'SYSTEM', 'content': 'NEW CHANNEL NAMED "Test"', 'timestamp': '00:00:00', 'avatar': 'https://tp-stuff.vercel.app/static/ecstasy.png'}]}
+{'test': [{'from': 'SYSTEM', 'content': 'NEW CHANNEL NAMED "Test"', 'timestamp': '00:00:00', 'avatar': 'https://tp-stuff.vercel.app/static/ecstasy.png'}, {'from': '49.36.121.185', 'content': 'hh', 'timestamp': '13:56:33', 'avatar': 'https://loremflickr.com/cache/resized/65535_51843733746_a0bd469bdc_320_320_nofilter.jpg'}]}
