@@ -3,10 +3,10 @@
 {% block title %}{{ _ip }} @ {{ roomname }}{% endblock %}
 
 {% block body %}
-<div style="position: fixed;z-index: 9999;">
+<div style="position: fixed; z-index: 9999; background-color: rgb(20, 1, 124);">
 <h1>{{ roomname }}</h1>
-</div>
 <br><hr><br>
+</div>
 
 <ul class="chat-list">
   {% for message in messages %}
@@ -22,7 +22,7 @@
 </ul>
 
 <form class="chat-form" method="POST">
-    <input type="text" required="True" name="content" id="msg-box" placeholder="Text here..." autofocus onsubmit="load()">
+    <input type="text" name="content" id="msg-box" placeholder="Text here..." autofocus onsubmit="load()">
     <button onclick="$.blockUI({'message':'<img src=\'//pcoelho.outsystemscloud.com/FullScreenAjaxWait/img/ajaxloader.gif\'>'})" type="submit">Send</button>
 </form>
 
