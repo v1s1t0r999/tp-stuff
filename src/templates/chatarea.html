@@ -11,7 +11,9 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: #180845;
-  padding: 20px;
+  padding: 35px;
+  position: sticky;
+  top: 0;
 }
 
 h1 {
@@ -60,11 +62,12 @@ nav a {
   {% endfor %}
 </ul>
 
+<div style="position:sticky; bottom:0;">
 <form class="chat-form" method="POST">
     <input type="text" name="content" id="msg-box" placeholder="Text here..." autofocus onsubmit="load()">
     <button onclick="$.blockUI({'message':'<img src=\'//pcoelho.outsystemscloud.com/FullScreenAjaxWait/img/ajaxloader.gif\'>'})" type="submit">Send</button>
 </form>
-
+</div>
 
 <script>
     window.onload = function(){
