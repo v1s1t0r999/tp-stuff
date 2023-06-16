@@ -40,10 +40,10 @@ def room(name):
 				return  redirect(f"/room/{name}")
 			except:
 				return redirect(f"/room/{name}")
-			database.add(name,{'from':user,'content':cnt,'timestamp':timestamp,'avatar':database.get_avatar(user)})
-			return  redirect(f"/room/{name}")
 		if content=="":
 			return redirect(f"/room/{name}")
+		database.add(name,{'from':user,'content':content,'timestamp':timestamp,'avatar':database.get_avatar(user)})
+		return redirect(f"/room/{name}")
 	name=str(name)
 	messages = database.read(name) #list like: [{"from":"user","msg":"this this"},{"from":"another","msg":"ok ok"}]
 	return render_template("chatarea.html",messages=messages,roomname=name,_ip=request.remote_addr)
