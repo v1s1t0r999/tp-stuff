@@ -40,6 +40,9 @@ def room(name):
 				return  redirect(f"/room/{name}")
 			except:
 				return redirect(f"/room/{name}")
+		if content.lower().startswith("!!rm"):
+			 database.add(name,{'from':user,'content':f"<a href='/room/{content.lower().split(" ")[1]}'><b>{content.lower().split(" ")[1]}</b></a>",'timestamp':timestamp,'avatar':database.get_avatar(user)})
+			 return  redirect(f"/room/{name}")
 		if content=="":
 			return redirect(f"/room/{name}")
 		database.add(name,{'from':user,'content':content,'timestamp':timestamp,'avatar':database.get_avatar(user)})
@@ -53,7 +56,7 @@ def room(name):
 @app.route("/room", methods=["GET","POST"])
 def room_base():
 	if request.method=="POST":
-		roomname = request.form['roomname']
+		roomname = request.form['roomname'].replace("%20","-").replace(" ","-")
 		return redirect(f"/room/{roomname}")
 	return render_template("room.html", _ip=request.remote_addr, active_rooms=list(database.read()))
 
