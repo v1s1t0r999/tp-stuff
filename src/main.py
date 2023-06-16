@@ -41,7 +41,9 @@ def room(name):
 			except:
 				return redirect(f"/room/{name}")
 		if content.lower().startswith("!!rm"):
-			 database.add(name,{'from':user,'content':f"<a href='/room/{content.lower().split(" ")[1]}'><b>{content.lower().split(" ")[1]}</b></a>",'timestamp':timestamp,'avatar':database.get_avatar(user)})
+			rname = content.lower().split(" ")[1]
+			cnt = f"<a href='/room/{rname}'> <b>{rname}</b> </a>"
+			 database.add(name,{'from':user,'content':cnt,'timestamp':timestamp,'avatar':database.get_avatar(user)})
 			 return  redirect(f"/room/{name}")
 		if content=="":
 			return redirect(f"/room/{name}")
