@@ -5,7 +5,7 @@ import ShitDB
 
 WOTD = "life"
 
-db = ShitDB.DB(os.getenv("github_token"), "tp-stuff", ("v1s1t0r999", os.getenv("mail")), branch="open-threads")
+db = ShitDB.DB(os.getenv("github_token"), "sources", ("v1s1t0r999", os.getenv("mail")))
 
 
 def read(roomname:str = None):
