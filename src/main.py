@@ -68,7 +68,6 @@ def bot():
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		database.add_bot(user, {'from':user,'content':str(request.form['message']), 'timestamp':timestamp, 'avatar':database.get_avatar(user)})
 		database.add_bot(user,{'from':'ECSTACY','content':reply,'timestamp':timestamp,'avatar':'https://tp-stuff.vercel.app/static/ecstasy.png'})
-		return redirect("/bot")
 	messages = database.read_bot(str(request.remote_addr))
 	return render_template("chatarea.html",messages=messages,roomname="bot", _ip=request.remote_addr)
 
