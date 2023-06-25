@@ -3,7 +3,7 @@ import requests
 # from flask import jsonify
 import ShitDB
 
-WOTD = "life"
+WOTD = "car"
 
 db = ShitDB.DB(os.getenv("github_token"), "sources", ("v1s1t0r999", os.getenv("mail")))
 
@@ -23,7 +23,7 @@ def read(roomname:str = None):
 def add(roomname, data=None):
     rooms = read()
     if not data:
-        con = {roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.upper()}\"","timestamp":"00:00:00","avatar":"https://tp-stuff.vercel.app/static/ecstasy.png"}]}
+        con = {roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00","avatar":"https://tp-stuff.vercel.app/static/ecstasy.png"}]}
         db.push_remote_data(con,"rooms.json")
         return db.load_remote_data("rooms.json", eval_output=True)[roomname]
     
@@ -47,7 +47,4 @@ def set_avatar(_ip,av):
     con['ip_avatars'].update({_ip : av})
     db.push_remote_data(con, "avatars.json")
     return {_ip : av}
-
-
-
 
