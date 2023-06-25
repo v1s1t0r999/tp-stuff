@@ -1,5 +1,6 @@
 from . import database
 from datetime import datetime
+import os
 import requests as r
 from flask import Flask, request, render_template, redirect
 
