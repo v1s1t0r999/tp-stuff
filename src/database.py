@@ -24,7 +24,7 @@ def add(roomname, data=None):
     rooms = read()
     if not data:
         rooms.update({roomname:[{"from": "SYSTEM","content": f"NEW CHANNEL NAMED \"{roomname.capitalize()}\"","timestamp":"00:00:00","avatar":"https://tp-stuff.vercel.app/static/ecstasy.png"}]})
-        db.push_remote_data(con,"rooms.json")
+        db.push_remote_data(rooms,"rooms.json")
         return db.load_remote_data("rooms.json", eval_output=True)[roomname]
     
     rooms[roomname].append(data)
