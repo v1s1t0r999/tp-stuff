@@ -62,7 +62,7 @@ def room_base():
 @app.route("/bot",methods=["GET","POST"])
 def bot():
 	if request.method=="POST":
-		reply = r.get(f"{os.getenv('chat_api')}&uid={str(request.remote_addr)}&msg={request.form['message'}").json()["cnt"]
+		reply = r.get(f"{os.getenv('chat_api')}&uid={str(request.remote_addr)}&msg={request.form['message']}").json()["cnt"]
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
 		database.add_bot(user, {'from':user,'content':str(request.form['message']), 'timestamp':timestamp, 'avatar':database.get_avatar(user)})
