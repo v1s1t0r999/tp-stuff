@@ -59,6 +59,22 @@ def room_base():
 
 
 
+@app.route("/bot",methods=["GET","POST"])
+def bot():
+	if request.method=="POST":
+		reply = r.get(f"{os.getenv('chat_api')}&uid={str(request.remote_addr)}&msg={request.form['message'}").json()["cnt"]
+		user = str(request.remote_addr)
+		timestamp = datetime.now().strftime("%H:%M:%S")
+		database.add_bot(user, {'from':user,'content':str(request.form['message']), 'timestamp':timestamp, 'avatar':database.get_avatar(user)})
+		database.add_bot(user,{'from':'ECSTACY','content':reply,'timestamp':timestamp,'avatar':'https://tp-stuff.vercel.app/static/ecstasy.png'})
+		return redirect("/bot")
+	messages = database.read_bot(str(request.remote_addr))
+	return render_template("chatarea.html",messages=messages,roomname=name, _ip=request.remote_addr)
+
+
+
+
+
 
 def run(debug=False):
 	app.run("0.0.0.0", debug=debug)
