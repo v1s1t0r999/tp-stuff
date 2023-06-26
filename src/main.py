@@ -69,7 +69,7 @@ def bot():
 		print(f"REPLY {reply}")
 		user = str(request.remote_addr)
 		timestamp = datetime.now().strftime("%H:%M:%S")
-		database.add_bot(user, {'from':user,'content':str(request.form['message']), 'timestamp':timestamp, 'avatar':database.get_avatar(user)})
+		database.add_bot(user, {'from':user,'content':str(request.form['content']), 'timestamp':timestamp, 'avatar':database.get_avatar(user)})
 		database.add_bot(user,{'from':'ECSTACY','content':reply,'timestamp':timestamp,'avatar':'https://tp-stuff.vercel.app/static/ecstasy.png'})
 		return f"POSTED! <br> {database.read_bot(str(request.remote_addr))}"
 	messages = database.read_bot(str(request.remote_addr))
