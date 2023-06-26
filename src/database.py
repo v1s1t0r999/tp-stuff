@@ -22,12 +22,10 @@ def read(roomname:str = None):
 def read_bot(user):
 	all_bots = db.load_remote_data("bot.json", eval_output=True)
 	try:
-		print(all_bots[user])
 		return all_bots[user]
 	except KeyError:
 		all_bots.update({user:[{"from": "Ecstacy","content": f"Hello!","timestamp":"00:00:00","avatar":"https://tp-stuff.vercel.app/static/ecstasy.png"}]})
 		db.push_remote_data(all_bots, "bot.json")
-	print(all_bots)
 	return all_bots[user]
 
 
@@ -37,7 +35,6 @@ def add_bot(user, data):
 	all_bots = db.load_remote_data("bot.json", eval_output=True)
 	all_bots[user] = user_bots
 	db.push_remote_data(all_bots, "bot.json")
-	print(all_bots)
 	return all_bots
 
 
