@@ -33,10 +33,12 @@ def read_bot(user):
 
 def add_bot(user, data):
 	user_bots = read_bot(user)
-	user_bots.update(data)
-	db.push_remote_data(user_bots, "bot.json")
-	print(user_bots)
-	return user_bots
+	user_bots.append(data)
+    all_bots = db.load_remote_data("bot.json", eval_output=True)
+    all_bots[user] = user_bots
+	db.push_remote_data(all_bots, "bot.json")
+	print(all_bots)
+	return all_bots
 
 
 def add(roomname, data=None):
